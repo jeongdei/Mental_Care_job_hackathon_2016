@@ -64,24 +64,27 @@
       <div class="jumbotron">
         <h2 class="text-center">상담 요청 메세지 보내기</h2>
         <p class="text-center">상담 시간</p>
-        <p class="text-center">
-          <label for="date">Date:</label>
-          <input type="date" name="date" id="date">
+        <br>
+        <div class="row">
+          <div class="col-lg-offset-0 col-lg-7 col-sm-offset-2 col-sm-5">
+<label for="date">Date:</label>
+            <input type="date" name="date" id="date" style="width: 55%">
+          </div>
           <label for="time">Time:</label>
-          <input type="time" name="time" id="time">
-        </p>
+          <input type="time" name="time" id="time" style="width:20%">
+</div>
         <div class="row text-center">
           <div class="text-center col-lg-12">
-            <!-- CONTACT FORM https://github.com/jonmbake/bootstrap3-contact-form -->
-            <form role="form" id="feedbackForm" class="text-center">
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea rows="10" cols="100" class="form-control" id="message" name="message" placeholder="Message"></textarea>
-                <span class="help-block" style="display: none;">Please enter a message.</span></div>
-              <span class="help-block" style="display: none;">Please enter a the security code.</span>
-              <button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" style=" margin-top: 10px;"> Send</button>
-            </form>
-            <!-- END CONTACT FORM -->
+          <!-- CONTACT FORM https://github.com/jonmbake/bootstrap3-contact-form -->
+          <form role="form" id="feedbackForm" class="text-center">
+          <div class="form-group">
+          <label for="message">Message</label>
+          <textarea rows="20" cols="100" class="form-control" id="message" name="message" placeholder="Message"></textarea>
+          <span class="help-block" style="display: none;">Please enter a message.</span></div>
+          <span class="help-block" style="display: none;">Please enter a the security code.</span>
+          <button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" style=" margin-top: 10px;"> Send</button>
+          </form>
+          <!-- END CONTACT FORM -->
           </div>
         </div>
       </div>
