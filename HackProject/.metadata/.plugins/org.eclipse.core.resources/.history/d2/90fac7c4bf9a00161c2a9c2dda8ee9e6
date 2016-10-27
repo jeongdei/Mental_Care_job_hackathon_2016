@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@page import="java.io.*,java.util.Date" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>글쓰기</h2>
+	<%
+	 String fileName = "test.txt"; //생성할 파일명
+	 String fileDir = "C:\\Users\\Myung Jun\\Desktop"; //파일을 생성할 디렉토리
+	 String filePath = request.getRealPath(fileDir) + "/"; //파일을 생성할 전체경로
+	 filePath += fileName; //생성할 파일명을 전체경로에 결합
+	 try{
+	 File f = new File(filePath); // 파일객체생성
+	 f.createNewFile(); //파일생성
+	 // 파일쓰기
+	 FileWriter fw = new FileWriter(filePath); //파일쓰기객체생성
+	 String data = "파일에다 아무거나 적습니다.\n이거는 두번째 줄인데 아무거나 적습니다";
+	 fw.write(data); //파일에다 작성
+	 fw.close(); //파일핸들 닫기
+	%>
+
+</body>
+</html>

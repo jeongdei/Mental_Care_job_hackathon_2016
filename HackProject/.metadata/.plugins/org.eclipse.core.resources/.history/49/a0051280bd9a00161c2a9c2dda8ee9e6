@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@page import="java.io.*,java.util.Date" %>
+<%@page import="java.net.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>글쓰기</h2>
+
+	<%
+		String realPath = application.getRealPath("/WEB-INF/Upload/");
+		int maxSize = 1024 * 1024 * 10;
+		File f = new File(realPath);
+		if(!f.isFile()){
+			if(!f.isDirectory()){
+				f.mkdir();
+			}
+		}
+		String filename = "MakeTestFile.txt";
+		PrintWriter writer = null;
+		writer = new PrintWriter(realPath + filename);
+		String content = "파일 생성 ok?";
+		writer.printf(content);
+		writer.close();
+	%>
+
+</body>
+</html>

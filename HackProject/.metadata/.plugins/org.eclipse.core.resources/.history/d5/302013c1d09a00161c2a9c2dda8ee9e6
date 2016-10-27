@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP : 파일 입출력</title>
+</head>
+<body>
+ 
+<script type="text/javascript"> 
+var fso=new ActiveXObject("Scripting.FileSystemObject"); 
+var filename="C:\text.txt"; 
+function savefile() { 
+if (!fso.FileExists(filename)) { 
+fso.CreateTextFile(filename,true); 
+} 
+var f=fso.OpenTextFile(filename,2,true); 
+f.Write(myarea.innerHTML); 
+f.Close(); 
+} 
+function loadfile() { 
+if (!fso.FileExists(filename)) { 
+fso.CreateTextFile(filename,true); 
+} 
+var f=fso.OpenTextFile(filename,1); 
+r=f.ReadAll(); 
+f.Close(); 
+myarea.innerHTML=r; 
+} 
+function window.onload() { 
+loadfile(filename); 
+} 
+</script> 
+<div id=myarea contenteditable=true style="width:320;height:240;border:solid 2 inset;overflow:scroll;background-color:silver;"></div> 
+<br><input type=button value=load onclick=loadfile()><input type=button value=save onclick=savefile()> 
+ 
+ 
+</body>
+</html>

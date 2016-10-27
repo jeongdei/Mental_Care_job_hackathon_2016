@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>::FILE I/O</title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+	
+	function createFile(){
+	
+		var txt=document.getElementById("txtInput").value;
+		var fileObject=new ActiveXObject("Scripting.FileSystemObject");	
+		fWrite=fileObject.CreateTextFile("c:\\Users\\Myung Jun\\Desktop\\test.txt",true);
+		fWrite.write(txt+"</body></html>");
+		fWrite.close();
+		document.getElementById("txtInput").innerHTML="저장됨";
+	
+	}
+	
+	function onSaveButtonClicked() {
+		var editor = document.getElementById("myEditor");
+		var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+		
+		savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
+		savePicker.fileTypeChoices.insert("Plain Text",[".txt"]);
+		savePicker.suggestedFileName="Sample";
+		
+		savePicker.pickSaveFileAsync().then(function (file) {
+			if(file){
+				sampleFile = file;
+				Windows.Storage.FileIO.writeTextAsync(sampleFile,editor.value).then(function (file) {
+					
+				});
+			}
+		});
+	}
+	
+	function showFile()
+	{
+		var filename = "C:\\input.txt";
+		var fileObject=new ActiveXObject("Scripting.FileSystemObject");
+		
+		if(!fileObject.FileExists(filename)){
+			alert('만들어진 파일 없음');
+		}
+		else{
+			var fOpen=fileObject.OpenTextFile(filename,1);
+			document.getElementById("txtOutput").innerHTML="";
+			
+			while(!fOpen.AtEndOfStream)
+			{
+				document.getElementById("txtOutput").innerHTML += fOpen.Readline();
+			}
+			fOpen.close();
+		}
+	}
+	
+	</script>
+
+	
+	<textarea id="txtInput" name="text" rows="6" cols="40">
+	이곳에 글을 입력하세요.
+	</textarea>
+	<br><br>
+	
+	<input type="button" value="createFile" onclick="createFile()">
+	<input type="button" value="showFile" onclick="showFile()">
+	<br><br>
+	
+	<textarea id="txtOutput" name="text" rows="6" cols="40">
+	저장된 글을 보기 위한 곳 입니다.
+	</textarea>
+</body>
+</html>

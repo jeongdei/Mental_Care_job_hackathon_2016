@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<%@page contentType="text/html; charset=euc-kr"%>
+<%@page import="java.io.*,java.util.Date"%>
+<html>
+<head>
+<title>게시판 글쓰기 - 입력화면</title>
+
+</head>
+<body>
+	<h2>글쓰기</h2>
+	<form action=BBSPost1.jsp method=post>
+		이름 : <input type=text name=NAME/> <br/>
+		제목 : <input type=text name=TITLE/> <br/>
+		
+		<textarea cols = 30 rows = 5 name=CONTENT></textarea><br/>
+		<input type=submit value='저장'/>
+	</form>
+
+</body>
+</html>

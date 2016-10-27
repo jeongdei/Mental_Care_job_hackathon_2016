@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>FileSystemObject 예제 페이지</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<SCRIPT language=Javascript>
+var fileSysObj=new ActiveXObject('Scripting.FileSystemObject');
+var fsoText=fileSysObj.CreateTextFile('c:\\testfile.txt', true);
+fsoText.WriteLine('테스트 파일 내용이다.');
+fsoText.Close();
+	
+	
+
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<center><BR>
+<a href="c:\\testfile.txt">생성된 파일 보기</a><BR>
+위치 :  "c:\\testfile.txt"<BR><BR>
+<FORM><INPUT type="button" value="창닫기" onClick="self.close()"></FORM></center>
+</BODY>
+</HTML>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>::FILE I/O</title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+	function createFile(){
+	
+		var txt=document.getElementById("txtInput").value;
+		var fileObject=new ActiveXObject("Scripting.FileSystemObject");	
+		fWrite=fileObject.CreateTextFile("C:\\Users\Myung Jun\Desktop\test.txt",true);
+		fWrite.write(txt+"</body></html>");
+		fWrite.close();
+		document.getElementById("txtInput").innerHTML="저장됨";
+	
+	}
+	
+	/*function onSaveButtonClicked() {
+		var editor = document.getElementById("myEditor");
+		var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+		
+		savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
+		savePicker.fileTypeChoices.insert("Plain Text",[".txt"]);
+		savePicker.suggestedFileName="Sample";
+		
+		savePicker.pickSaveFileAsync().then(function (file) {
+			if(file){
+				sampleFile = file;
+				Windows.Storage.FileIO.writeTextAsync(sampleFile,editor.value).then(function (file) {
+					
+				});
+			}
+		});
+	}*/
+	
+	function showFile()
+	{
+		var filename = "C:\\input.txt";
+		var fileObject=new ActiveXObject("Scripting.FileSystemObject");
+		
+		if(!fileObject.FileExists(filename)){
+			alert('만들어진 파일 없음');
+		}
+		else{
+			var fOpen=fileObject.OpenTextFile(filename,1);
+			document.getElementById("txtOutput").innerHTML="";
+			
+			while(!fOpen.AtEndOfStream)
+			{
+				document.getElementById("txtOutput").innerHTML += fOpen.Readline();
+			}
+			fOpen.close();
+		}
+	}
+	
+	</script>
+	
+	<%@page contentType="text/html;charset=euc-kr" %>
+<%@page import="java.io.*"%>
+<%
+  String fileName = "test.txt"; //생성할 파일명
+  String fileDir = "fileDir"; //파일을 생성할 디렉토리
+  String filePath = request.getRealPath(fileDir) + "/"; //파일을 생성할 전체경로
+  filePath += fileName; //생성할 파일명을 전체경로에 결합
+  try{
+  File f = new File(filePath); // 파일객체생성
+  f.createNewFile(); //파일생성
+  // 파일쓰기
+  FileWriter fw = new FileWriter(filePath); //파일쓰기객체생성, true = 파일이 존재하면 생성 안함
+  String data = "파일에다 아무거나 적습니다.\n이거는 두번째 줄인데 아무거나 적습니다";
+  fw.write(data); //파일에다 작성
+  fw.close(); //파일핸들 닫기
+
+  // 파일읽기
+  FileReader fr = new FileReader(filePath); //파일읽기객체생성
+  BufferedReader br = new BufferedReader(fr); //버퍼리더객체생성
+  String line = null; 
+  while((line=br.readLine())!=null){ //라인단위 읽기
+    out.println(line + "<br>"); 
+  }
+  }catch (IOException e) { 
+    System.out.println(e.toString()); //에러 발생시 메시지 출력
+  }
+%>
+	
+	<textarea id="txtInput" name="text" rows="6" cols="40">
+	이곳에 글을 입력하세요.
+	</textarea>
+	<br><br>
+	
+	<input type="button" value="createFile" onclick="createFile()">
+	<input type="button" value="showFile" onclick="showFile()">
+	<br><br>
+	
+	<textarea id="txtOutput" name="text" rows="6" cols="40">
+	저장된 글을 보기 위한 곳 입니다.
+	</textarea>
+</body>
+</html>
